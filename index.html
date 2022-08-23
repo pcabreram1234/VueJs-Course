@@ -13,7 +13,8 @@
       const vm = Vue.createApp({
         data() {
           return {
-            text: "Puerta cerrada",
+            text: "Accede a tu cuenta",
+            username: "",
             open: false,
             styles: {
               backgroundColor: "#e5e5e5",
@@ -24,25 +25,38 @@
         watch: {
           open(value) {
             if (value) {
-              this.text = "Puerta abierta";
+              this.text = "Cierra sesión";
               this.className = "open";
-              // this.styles.backgroundColor = "#b5e7a0";
+              // this.styles.backgroundColor = "#b5e7a0"ß;
             } else {
-              this.text = "Puerta cerrada";
+              this.text = "Accede a tu cuenta";
               this.className = "closed";
               // this.styles.backgroundColor = "#eca1a6";
             }
-            console.log(this.className);
+          },
+          username(value) {
+            this.username = value;
+            console.log(this.username);
           },
         },
         computed: {
           label() {
-            return this.open ? "Cerrar" : "Abrir";
+            return this.open ? "Salir" : "Acceder";
           },
         },
         template: `<div class="container"  :class="className">
                               <h2> {{text}}</h2>
-                   <button @click="open=!open" >{{label}}</button>
+                              <div v-if="open">
+                                <p>Hola {{username}}</p>
+                              </div>
+                              <div v-else class="inputBox" >
+                                <label>Username</label>
+                                <input type="text" v-model="username"/>
+                              </div>
+                   <button @click="open=!open">
+                    <div v-if="!open">Acceder</div>
+                    <div v-else>Salir</div>
+                    </button>
       </div>
         `,
       }).mount("#app");
@@ -77,6 +91,24 @@
       }
       .open {
         background-color: #b5e7a0;
+      }
+
+      input {
+        outline: none;
+        padding: 5px;
+        border: 1px solid white;
+        border-radius: 5px;
+        box-shadow: 1px 2px 1px 3px rgba(189, 183, 183, 0.471);
+      }
+
+      .inputBox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .inputBox > * {
+        margin: 5px 0;
       }
     </style>
   </body>
