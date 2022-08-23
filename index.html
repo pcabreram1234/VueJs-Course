@@ -20,6 +20,28 @@
               backgroundColor: "#e5e5e5",
             },
             className: ["closed"],
+            posts: [
+              {
+                title: `Titulo ${parseInt(Array.prototype.indexOf(this)) + 1}`,
+                description:
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, beatae explicabo! Voluptate maiores ipsa, dolorum vero deleniti, blanditiis delectus facere officiis saepe ratione laborum itaque! Ipsam a voluptatem atque quaerat.",
+              },
+              {
+                title: `Titulo ${parseInt(Array.prototype.indexOf(this)) + 1}`,
+                description:
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, beatae explicabo! Voluptate maiores ipsa, dolorum vero deleniti, blanditiis delectus facere officiis saepe ratione laborum itaque! Ipsam a voluptatem atque quaerat.",
+              },
+              {
+                title: `Titulo ${parseInt(Array.prototype.indexOf(this)) + 1}`,
+                description:
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, beatae explicabo! Voluptate maiores ipsa, dolorum vero deleniti, blanditiis delectus facere officiis saepe ratione laborum itaque! Ipsam a voluptatem atque quaerat.",
+              },
+              {
+                title: `Titulo ${parseInt(Array.prototype.indexOf(this)) + 1}`,
+                description:
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, beatae explicabo! Voluptate maiores ipsa, dolorum vero deleniti, blanditiis delectus facere officiis saepe ratione laborum itaque! Ipsam a voluptatem atque quaerat.",
+              },
+            ],
           };
         },
         watch: {
@@ -44,13 +66,26 @@
             return this.open ? "Salir" : "Acceder";
           },
         },
+        methods: {
+          handleLoad() {
+            this.posts.forEach((post) => {
+              console.log(post);
+            });
+          },
+        },
         template: `<div class="container"  :class="className">
                               <h2> {{text}}</h2>
                               <div v-if="open">
                                 <p>Hola {{username}}</p>
+                                <div class="list" v-on:click="handleLoad" >
+                                  <div v-for="item in posts" class="item" >
+                                    <div class="title">{{item.title}}</div>
+                                    <p>{{item.description}}</p>
+                                   </div>
+                                 </div>
                               </div>
                               <div v-else class="inputBox" >
-                                <label>Username</label>
+                                <div>Username</div>
                                 <input type="text" v-model="username"/>
                               </div>
                    <button @click="open=!open">
@@ -109,6 +144,31 @@
       }
       .inputBox > * {
         margin: 5px 0;
+      }
+
+      .list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .item {
+        width: 30%;
+        border-radius: 10px;
+        padding: 25px;
+        background-color: #dceaff42;
+        border: 3px solid #00000021;
+      }
+
+      .title {
+        text-align: center;
+        font-size: 20px;
+      }
+
+      .title ~ p {
+        text-align: justify;
       }
     </style>
   </body>
