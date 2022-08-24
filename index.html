@@ -22,22 +22,22 @@
             className: ["closed"],
             posts: [
               {
-                title: `Titulo ${parseInt(Array.prototype.indexOf(this)) + 1}`,
+                title: "Titulo",
                 description:
                   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, beatae explicabo! Voluptate maiores ipsa, dolorum vero deleniti, blanditiis delectus facere officiis saepe ratione laborum itaque! Ipsam a voluptatem atque quaerat.",
               },
               {
-                title: `Titulo ${parseInt(Array.prototype.indexOf(this)) + 1}`,
+                title: "Titulo",
                 description:
                   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, beatae explicabo! Voluptate maiores ipsa, dolorum vero deleniti, blanditiis delectus facere officiis saepe ratione laborum itaque! Ipsam a voluptatem atque quaerat.",
               },
               {
-                title: `Titulo ${parseInt(Array.prototype.indexOf(this)) + 1}`,
+                title: "Titulo",
                 description:
                   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, beatae explicabo! Voluptate maiores ipsa, dolorum vero deleniti, blanditiis delectus facere officiis saepe ratione laborum itaque! Ipsam a voluptatem atque quaerat.",
               },
               {
-                title: `Titulo ${parseInt(Array.prototype.indexOf(this)) + 1}`,
+                title: "Titulo",
                 description:
                   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, beatae explicabo! Voluptate maiores ipsa, dolorum vero deleniti, blanditiis delectus facere officiis saepe ratione laborum itaque! Ipsam a voluptatem atque quaerat.",
               },
@@ -78,8 +78,8 @@
                               <div v-if="open">
                                 <p>Hola {{username}}</p>
                                 <div class="list" v-on:click="handleLoad" >
-                                  <div v-for="item in posts" class="item" >
-                                    <div class="title">{{item.title}}</div>
+                                  <div v-for="(item, i) in posts" class="item" key="i"  >
+                                    <div class="title">{{item.title}} {{i+1}}</div>
                                     <p>{{item.description}}</p>
                                    </div>
                                  </div>
@@ -169,6 +169,10 @@
 
       .title ~ p {
         text-align: justify;
+      }
+
+      .container div > p {
+        text-align: center;
       }
     </style>
   </body>
