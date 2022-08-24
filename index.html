@@ -10,7 +10,7 @@
     <div id="app"></div>
     <script src="https://unpkg.com/vue@3"></script>
     <script>
-      const vm = Vue.createApp({
+      const app = Vue.createApp({
         data() {
           return {
             text: "Accede a tu cuenta",
@@ -78,10 +78,7 @@
                               <div v-if="open">
                                 <p>Hola {{username}}</p>
                                 <div class="list" v-on:click="handleLoad" >
-                                  <div v-for="(item, i) in posts" class="item" key="i"  >
-                                    <div class="title">{{item.title}} {{i+1}}</div>
-                                    <p>{{item.description}}</p>
-                                   </div>
+                                  <item v-for="(item, i) of posts" :key="i" :post="item" :index="i"/>
                                  </div>
                               </div>
                               <div v-else class="inputBox" >
@@ -91,10 +88,20 @@
                    <button @click="open=!open">
                     <div v-if="!open">Acceder</div>
                     <div v-else>Salir</div>
-                    </button>
+                    </button>.
       </div>
         `,
-      }).mount("#app");
+      });
+
+      app.component("item", {
+        props: ["post", "index"],
+        template: `<div class="item">
+                    <div class="title">{{post.title}} {{index+1}}</div>
+                      <p>{{post.description}}</p>
+                    </div>`,
+      });
+
+      const vm = app.mount("#app");
     </script>
 
     <style>
