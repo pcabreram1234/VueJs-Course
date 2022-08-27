@@ -16,30 +16,18 @@
             text: "Hola VueJs",
           };
         },
-        provide() {
-          return {
-            otroText: this.$data.text,
-          };
-        },
         template: `
-          <div>{{text}}</div>
-          <other />
+          <v-button ref="elemento" :label="text" />
         `,
       });
 
-      app.component("other", {
-        template: `<third />`,
+      app.component("v-button", {
+        props: ["label"],
+        template: `<button>{{label}}</button>`,
       });
 
-      app.component("third", {
-        inject: {
-          text: {
-            from: "otroText",
-          },
-        },
-        template: `<div>{{text}}</div>`,
-      });
       const vm = app.mount("#app");
+      console.log(vm.$refs.elemento);
     </script>
 
     <style>
@@ -60,10 +48,10 @@
       }
       button {
         margin-top: 24px;
-        border: none;
         background-color: white;
         padding: 8px 24px;
         border-radius: 12px;
+        border-color: rgba(219, 219, 219, 0.516);
         cursor: pointer;
       }
       .closed {
