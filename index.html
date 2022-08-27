@@ -16,18 +16,9 @@
             text: "Hola VueJs",
           };
         },
-        template: `
-          <v-button ref="elemento" :label="text" />
-        `,
       });
-
-      app.component("v-button", {
-        props: ["label"],
-        template: `<button>{{label}}</button>`,
-      });
-
       const vm = app.mount("#app");
-      console.log(vm.$refs.elemento);
+      console.log(vm);
     </script>
 
     <style>
